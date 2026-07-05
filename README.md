@@ -1,4 +1,4 @@
-# Quant Portfolio Analyzer
+# Portfolio Analyzer
 
 A Streamlit app that turns a manually-entered portfolio into a full quant report — live prices + historical data via `yfinance`, all metrics computed from actual return series, benchmarked against Nifty 50.
 
@@ -26,7 +26,6 @@ The app opens at `http://localhost:8501`.
 - CAGR, annualized volatility, Sharpe, Sortino, Calmar
 - Beta and alpha via OLS regression vs Nifty 50 (with R²)
 - Jensen's alpha (CAPM), Treynor ratio
-- Information ratio, tracking error
 - Max drawdown with peak/trough dates
 - VaR and CVaR at 95% confidence
 - Skewness, kurtosis, best/worst day
