@@ -242,7 +242,12 @@ def regress_beta_alpha(asset_ret: pd.Series, bench_ret: pd.Series) -> tuple[floa
     df = pd.concat([asset_ret, bench_ret], axis=1).dropna()
     if len(df) < 30:
         return np.nan, np.nan, np.nan
-    slope, intercept, r, _, _ = stats.linregress(df.iloc[:, 1], df.iloc[:, 0])
+    # Force plain numpy float64 — some pandas/scipy version combos (e.g. on
+    # Streamlit Cloud) produce nullable/extension dtypes that scipy's
+    # linregress can't handle internally.
+    x = np.asarray(df.iloc[:, 1], dtype=np.float64)
+    y = np.asarray(df.iloc[:, 0], dtype=np.float64)
+    slope, intercept, r, _, _ = stats.linregress(x, y)
     return slope, intercept, r ** 2
 
 
